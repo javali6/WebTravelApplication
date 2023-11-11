@@ -1,5 +1,10 @@
 -- V1__create_tables.sql
 
+DROP TABLE IF EXISTS Customers CASCADE;
+DROP TABLE IF EXISTS Tours CASCADE;
+DROP TABLE IF EXISTS Reservations CASCADE;
+DROP TABLE IF EXISTS Users CASCADE;
+
 -- Create Customers table
 CREATE TABLE IF NOT EXISTS Customers
 (
