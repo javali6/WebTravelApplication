@@ -10,5 +10,5 @@ import org.springframework.stereotype.Service;
 public class TourService {
 
     @Autowired
-    TourRepository tourRepository;
+    private TourRepository tourRepository;
 }
