@@ -1,32 +1,39 @@
 package com.web_travel.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Date;
 import java.time.LocalDate;
 
 @Entity
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "reservations")
 public class Reservation {
 
     @Id
-    private Long reservationId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "reservationid")
+    private Long reservationid;
 
     @ManyToOne
+    @JoinColumn(name = "customerid")
     private Customer customer;
 
     @ManyToOne
+    @JoinColumn(name = "tourid")
     private Tour tour;
 
-    private LocalDate reservationDate;
+    @Column(name = "reservationDate")
+    private Date reservationDate;
+
+    @Column(name = "numberofparticipants")
     private Integer numberOfParticipants;
 
 }

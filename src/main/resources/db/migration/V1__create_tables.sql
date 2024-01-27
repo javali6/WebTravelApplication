@@ -8,44 +8,44 @@ DROP TABLE IF EXISTS Users CASCADE;
 -- Create Customers table
 CREATE TABLE IF NOT EXISTS Customers
 (
-    CustomerID  serial PRIMARY KEY,
-    FirstName   VARCHAR(50),
-    LastName    VARCHAR(50),
-    Address     TEXT,
-    PhoneNumber VARCHAR(15),
-    Email       VARCHAR(100)
+    customerId  serial PRIMARY KEY,
+    firstName   VARCHAR(50),
+    lastName    VARCHAR(50),
+    address     TEXT,
+    phoneNumber VARCHAR(15),
+    email       VARCHAR(100)
 );
 
 
 -- Create Tours table
 CREATE TABLE IF NOT EXISTS Tours
 (
-    TourID          serial PRIMARY KEY,
-    Name            VARCHAR(100),
-    StartDate       DATE,
-    EndDate         DATE,
-    Price           NUMERIC(10, 2),
-    Description     TEXT,
-    MaxParticipants INTEGER
+    tourID          serial PRIMARY KEY,
+    name            VARCHAR(100),
+    startDate       DATE,
+    endDate         DATE,
+    price           NUMERIC(10, 2),
+    description     TEXT,
+    maxParticipants INTEGER
 );
 
 
 -- Create Reservations table
 CREATE TABLE IF NOT EXISTS Reservations
 (
-    ReservationID        serial PRIMARY KEY,
-    CustomerID           INTEGER REFERENCES Customers (CustomerID),
-    TourID               INTEGER REFERENCES Tours (TourID),
-    ReservationDate      DATE,
-    NumberOfParticipants INTEGER
+    reservationID        serial PRIMARY KEY,
+    customerID           INTEGER REFERENCES Customers (CustomerID),
+    tourID               INTEGER REFERENCES Tours (TourID),
+    reservationDate      DATE,
+    numberOfParticipants INTEGER
 );
 
 
 -- Create Users table
 CREATE TABLE IF NOT EXISTS Users
 (
-    UserID   serial PRIMARY KEY,
-    Username VARCHAR(50) UNIQUE,
-    Password VARCHAR(100),
-    Role     VARCHAR(20) DEFAULT 'USER'
+    userID   serial PRIMARY KEY,
+    username VARCHAR(50) UNIQUE,
+    password VARCHAR(100),
+    role     VARCHAR(20) DEFAULT 'USER'
 );

@@ -16,15 +16,40 @@ public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
-    public List<Customer> findAll() {
+    public List<Customer> getAllCustomers() {
         return customerRepository.findAll();
     }
 
-    public Optional<Customer> findOne(Long id) {
-        return customerRepository.findById(id);
+    public Customer getCustomerById(Long customerId) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+        return optionalCustomer.orElse(null);
     }
 
-    public Customer saveOne(Customer customer) {
+    public Customer createCustomer(Customer customer) {
         return customerRepository.save(customer);
     }
+
+    public Customer updateCustomer(Long customerId, Customer customerDetails) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+        if (optionalCustomer.isPresent()) {
+            Customer existingCustomer = optionalCustomer.get();
+            // Update existingCustomer with details from customerDetails
+            // ...
+
+            return customerRepository.save(existingCustomer);
+        } else {
+            return null;
+        }
+    }
+
+    public boolean deleteCustomer(Long customerId) {
+        Optional<Customer> optionalCustomer = customerRepository.findById(customerId);
+        if (optionalCustomer.isPresent()) {
+            customerRepository.deleteById(customerId);
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }

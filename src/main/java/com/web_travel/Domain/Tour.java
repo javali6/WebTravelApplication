@@ -1,8 +1,6 @@
 package com.web_travel.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,13 +14,16 @@ import java.time.LocalDate;
 @AllArgsConstructor
 @Table(name = "tours")
 public class Tour {
+
     @Id
-    private Long tourId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "tourid")
+    private Long tourid;
 
     private String name;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private LocalDate startdate;
+    private LocalDate enddate;
     private BigDecimal price;
     private String description;
-    private Integer maxParticipants;
+    private Integer maxparticipants;
 }
