@@ -1,8 +1,6 @@
 package com.web_travel.Domain;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,16 +9,26 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "customers")
+@Table(name = "Customers")
 public class Customer {
 
     @Id
-    private Long customerId;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "customerid")
+    private Long customerid;
 
+    @Column(name = "firstname", length = 50)
     private String firstName;
-    private String lastName;
-    private String address;
-    private String phoneNumber;
-    private String email;
 
+    @Column(name = "lastname", length = 50)
+    private String lastName;
+
+    @Column(name = "address")
+    private String address;
+
+    @Column(name = "phonenumber", length = 15)
+    private String phoneNumber;
+
+    @Column(name = "email", length = 100)
+    private String email;
 }
